@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
+h1, h2, h3, h4, h5, p {
+	font-family: 'IBM Plex Mono', monospace;
+}
+
+table, caption, tbody, tfoot, thead, tr, th, td {
+  padding: 0;
+}
+
+h1 {
+	color: white;
+	margin: 0;
+	font-size: 20px;
+}
+
+.outerTable {
+	display: inline-block;
+}
+
+.node {
+	padding: 10px;
+	width: 100px;
+	display: inline-block;
+	border-radius: 5px;
+	background-color: blue;
+}
