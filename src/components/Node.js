@@ -4,11 +4,13 @@ class Node extends React.Component {
 	constructor(props) {
 		super(props)
 		let text
-		if (typeof props.data === "string") text = props.data
+		if (typeof props.data === "string") {
+			text = props.data
+			this.props.enable(this.props.id)
+		}
 		this.state = {
 			correct: false,
 			incorrect: false,
-			invisible: props.invisible,
 			disabled: props.disabled,
 			text: text
 		}
@@ -18,7 +20,6 @@ class Node extends React.Component {
 		this.setState({
 			correct: nextProps.correct,
 			incorrect: nextProps.incorrect,
-			invisible: nextProps.invisible,
 			disabled: nextProps.disabled
 		})
 	}
@@ -27,7 +28,6 @@ class Node extends React.Component {
 		let output = {}
 		if (this.state.correct) output['backgroundColor'] = 'green'
 		if (this.state.incorrect) output['backgroundColor'] = 'red'
-		if (this.state.invisible) output['visibility'] = 'hidden'
 		if (this.state.disabled) output['backgroundColor'] = 'grey'
 		return output
 	}
@@ -35,11 +35,12 @@ class Node extends React.Component {
 	renderNodePair() { if (typeof this.props.data !== 'string') return <NodePair data={this.props.data} select={(text) => {this.select(text)}} reverse={this.props.reverse}></NodePair> }
 
 	select(text) {
-		this.setState({text: text, invisible: false})
+		this.props.enable(this.props.id)
+		this.setState({text: text})
 	}
 
 	onClick() {
-		if (!this.state.selected && !this.state.disabled && !this.state.invisible) {
+		if (!this.state.selected && !this.state.disabled) {
       this.props.select(this.state.text, this.props.id)
     }
 	}

@@ -4,19 +4,39 @@ class NodePair extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			disableLeft: false,
-			disableRight: false,
+			disableLeft: true,
+			disableRight: true,
 			correctLeft: false,
 			correctRight: false,
 			incorrectLeft: false,
 			incorrectRight: false,
+			existsLeft: false,
+			existsRight: false
 		}
 	}
 
 	renderChildren() {
 		let n1, n2;
-		n1 = <Node data={this.props.data.left} correct={this.state.correctLeft} incorrect={this.state.incorrectLeft} disabled={this.state.disableLeft} id={0} select={(text, id) => {this.select(text, id)}} reverse={this.props.reverse}></Node>
-		n2 = <Node data={this.props.data.right} correct={this.state.correctRight} incorrect={this.state.incorrectRight} disabled={this.state.disableRight} id={1} select={(text, id) => {this.select(text, id)}} reverse={this.props.reverse}></Node>
+		n1 = <Node
+			data={this.props.data.left}
+			correct={this.state.correctLeft}
+			incorrect={this.state.incorrectLeft}
+			disabled={this.state.disableLeft}
+			id={0}
+			reverse={this.props.reverse}
+			select={(text, id) => {this.select(text, id)}}
+			enable={(id) => {this.enableNode(id)}}
+		></Node>
+		n2 = <Node
+			data={this.props.data.right}
+			correct={this.state.correctRight}
+			incorrect={this.state.incorrectRight}
+			disabled={this.state.disableRight}
+			id={1}
+			reverse={this.props.reverse}
+			select={(text, id) => {this.select(text, id)}}
+			enable={(id) => {this.enableNode(id)}}
+		></Node>
 
     return (
     <tbody>
@@ -28,6 +48,20 @@ class NodePair extends React.Component {
 			</tr>
 		</tbody>
 		)
+	}
+
+	enableNode(id) {
+		let oldState = this.state
+		if (id === 0) {
+			oldState["existsLeft"] = true
+		} else {
+			oldState["existsRight"] = true
+		}
+		if (oldState.existsLeft && oldState.existsRight) {
+			oldState["disableLeft"] = false
+			oldState["disableRight"] = false
+		}
+		this.setState(oldState)
 	}
 
 	select(text, id) {
