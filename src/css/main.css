@@ -2,26 +2,92 @@
 
 h1, h2, h3, h4, h5, p {
 	font-family: 'IBM Plex Mono', monospace;
+	color: white;
 }
 
 table, caption, tbody, tfoot, thead, tr, th, td {
   padding: 0;
 }
 
-h1 {
-	color: white;
+body {
 	margin: 0;
-	font-size: 20px;
+}
+
+h1 {
+	font-size: 4vw;
+	margin: 0;
+}
+
+.splash {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: blue;
+}
+
+.center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.input {
+	position: relative;
+	display: inline-block;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+select {
+	-webkit-appearance: button;
+	-webkit-border-radius: 0.5vw;
+	background-position: 97% center;
+	background-repeat: no-repeat;
+	font-family: 'IBM Plex Mono', monospace;
+	font-size: 1vw;
+	padding: 0.75vw 0.75vw;
+	width: 5vw;
+	border: none;
+	margin: 1vw;
+}
+
+select:focus {
+	outline: none;
+}
+
+button {
+	padding: 0.75vw;
+	font-family: 'IBM Plex Mono', monospace;
+	width: 5vw;
+	border-radius: 0.5vw;
+	font-size: 1vw;
+	background-color: green;
+	color: white;
+	border: none;
+	margin: 1vw;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .outerTable {
 	display: inline-block;
 }
 
+h2 {
+	margin: 0;
+	font-size: 1vw;
+}
+
 .node {
-	padding: 10px;
-	width: 200px;
+	padding: 0.5vw;
+	width: 7vw;
 	display: inline-block;
 	border-radius: 5px;
 	background-color: blue;
+	white-space: nowrap;
+	overflow: hidden;
 }

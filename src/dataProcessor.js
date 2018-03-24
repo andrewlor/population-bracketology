@@ -1,5 +1,4 @@
 let data = {
-	"AFRICA": "1250",
 	"Algeria": "42.2",
 	"Egypt": "93.4",
 	"Libya": "6.4",
@@ -55,10 +54,8 @@ let data = {
 	"Namibia": "2.5",
 	"South Africa": "56.5",
 	"Swaziland": "1.4",
-	"NORTHERN AMERICA": "362",
 	"Canada": "36.7",
 	"United States": "325.4",
-	"LATIN AMERICA AND THE CARIBBEAN": "643",
 	"Belize": "0.4",
 	"Costa Rica": "4.9",
 	"El Salvador": "6.4",
@@ -94,7 +91,6 @@ let data = {
 	"Suriname": "0.6",
 	"Uruguay": "3.5",
 	"Venezuela": "31.4",
-	"ASIA": "4: 494",
 	"Armenia": "3",
 	"Azerbaijan": "9.9",
 	"Bahrain": "1.5",
@@ -120,7 +116,7 @@ let data = {
 	"Afghanistan": "35.5",
 	"Bangladesh": "164.7",
 	"Bhutan": "0.8",
-	"India": "1: 352.6",
+	"India": "1352.6",
 	"Iran": "80.6",
 	"Maldives": "0.4",
 	"Nepal": "29.4",
@@ -137,13 +133,12 @@ let data = {
 	"Thailand": "66.1",
 	"Timor-Leste": "1.3",
 	"Vietnam": "93.7",
-	"China": "1: 386.8",
+	"China": "1386.8",
 	"Japan": "126.7",
 	"Korea:  North": "25.5",
 	"Korea:  South": "51.4",
 	"Mongolia": "3.2",
 	"Taiwan": "23.6",
-	"EUROPE": "745",
 	"Denmark": "5.8",
 	"Estonia": "1.3",
 	"Finland": "5.5",
@@ -188,7 +183,6 @@ let data = {
 	"Serbia": "7",
 	"Slovenia": "2.1",
 	"Spain": "46.6",
-	"OCEANIA": "42",
 	"Australia": "24.5",
 	"Federated States of Micronesia": "0.1",
 	"Fiji": "0.9",
@@ -208,15 +202,19 @@ let data = {
 	"Vanuatu": "0.3"
 }
 
+let pool = Object.assign({}, data);
+
 function randomProperty(obj) {
   var keys = Object.keys(obj)
   let key = keys[ keys.length * Math.random() << 0]
-  return {key: key, value: obj[key]};
+  let ret = {key: key, value: obj[key]};
+  delete obj[key];
+  return ret;
 }
 
 function dataProcessor(size) {
 	let arr = []
-	for (let i = 0; i < size; ++i) arr.push(randomProperty(data))
+	for (let i = 0; i < size; ++i) arr.push(randomProperty(pool))
 	let arr1 = []
 	for (let i = 0; i < size; i += 2) {
 		let obj = {left: arr[i].key, right: arr[i+1].key}
@@ -242,26 +240,8 @@ function dataProcessor(size) {
 		arr1 = tempArr
 	}
 
+	console.log(arr);
 	return arr1[0]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default dataProcessor
