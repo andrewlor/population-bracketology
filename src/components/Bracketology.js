@@ -1,8 +1,8 @@
 import React from "react"
 import Node from "./Node"
 import NodePair from "./NodePair"
+import score from "./Score"
 class Bracketology extends NodePair {
-
 	select(text, id) {
 		if (id === 0) {
 			this.setState({disableRight: true})
@@ -19,12 +19,25 @@ class Bracketology extends NodePair {
 				this.setState({incorrectRight: true})
 			}
 		}
+		this.setState({showScore: true})
+	}
+
+	renderScore() {
+		if (this.state.showScore) {
+			return <tr colSpan="2">
+				<td colSpan="2">
+					<h1 style={{color: 'black', float: 'left'}}>Your score is {score.score + 1}</h1>
+					<button style={{float: 'right'}} onClick={this.props.playAgain}>Play Again</button>
+				</td>
+			</tr>
+		}
 	}
   
   render () {
     return (
-      <table className="center">
+      <table className="bracketology">
       	<tbody>
+      		{this.renderScore()}
       		<tr>
 	      		<td>
 			        <Node

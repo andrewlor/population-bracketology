@@ -1,5 +1,6 @@
 import React from "react"
 import Node from "./Node.js"
+import score from "./Score"
 class NodePair extends React.Component {
 	constructor(props) {
 		super(props)
@@ -38,16 +39,20 @@ class NodePair extends React.Component {
 			enable={(id) => {this.enableNode(id)}}
 		></Node>
 
-    return (
-    <tbody>
-      <tr>
-				<td>{n1}</td>
-			</tr>
-			<tr>
-				<td>{n2}</td>
-			</tr>
-		</tbody>
-		)
+		let brackStyle = {}
+		let containerStyle = {position: "relative", paddingRight: "20px"}
+		if (this.props.reverse) {
+			brackStyle.left = 5; brackStyle.borderRight = "0"; brackStyle.borderLeft = "2px solid grey";
+			containerStyle.paddingRight = 0; containerStyle.paddingLeft = "20px";
+		}
+
+		return <div style={containerStyle}>
+			<React.Fragment>
+				{n1}
+				{n2}
+			</React.Fragment>
+			<div className="bracket" style={brackStyle}></div>
+		</div>
 	}
 
 	enableNode(id) {
@@ -68,6 +73,7 @@ class NodePair extends React.Component {
 		if (id === 0) {
 			this.setState({disableRight: true})
 			if (this.props.data.correct === text) {
+				++score.score
 				this.setState({correctLeft: true})
 			} else {
 				this.setState({incorrectLeft: true})
@@ -75,6 +81,7 @@ class NodePair extends React.Component {
 		} else {
 			this.setState({disableLeft: true})
 			if (this.props.data.correct === text) {
+				++score.score
 				this.setState({correctRight: true})
 			} else {
 				this.setState({incorrectRight: true})
@@ -86,9 +93,7 @@ class NodePair extends React.Component {
   render () {
     return (
       <React.Fragment>
-      	<table>
-      		{this.renderChildren()}
-				</table>
+      	{this.renderChildren()}
       </React.Fragment>
     );
   }

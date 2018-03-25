@@ -239,8 +239,6 @@ function dataProcessor(size) {
 		}
 		arr1 = tempArr
 	}
-
-	console.log(arr);
 	return arr1[0]
 }
 

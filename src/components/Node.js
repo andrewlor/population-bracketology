@@ -50,7 +50,7 @@ class Node extends React.Component {
   		<td>{this.renderNodePair()}</td>,
       <td>
       	<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}}>
-      		<h2>{this.state.text}</h2>
+      		<h2 className="nodetext">{this.state.text}</h2>
       	</div>
       </td>
   	]

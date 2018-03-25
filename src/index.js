@@ -5,10 +5,17 @@ import Bracketology from './components/Bracketology';
 import Splash from './components/Splash'
 import registerServiceWorker from './registerServiceWorker';
 import getData from './dataProcessor';
+import score from './components/Score';
 
 let unmountSplash = (size) => {
 	ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-	ReactDOM.render(<Bracketology data={getData(size)} />, document.getElementById('root'));
+	ReactDOM.render(<Bracketology data={getData(size)} playAgain={playAgain}/>, document.getElementById('root'));
+}
+
+let playAgain = () => {
+	score.score = 0
+	ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+	ReactDOM.render(<Splash unmountSplash={unmountSplash}/>, document.getElementById('root'));
 }
 
 ReactDOM.render(<Splash unmountSplash={unmountSplash}/>, document.getElementById('root'));

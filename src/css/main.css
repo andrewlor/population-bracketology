@@ -13,11 +13,6 @@ body {
 	margin: 0;
 }
 
-h1 {
-	font-size: 4vw;
-	margin: 0;
-}
-
 .splash {
 	position: absolute;
 	width: 100%;
@@ -30,6 +25,11 @@ h1 {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+}
+
+.bracketology {
+	margin: auto;
+	padding: 30px;
 }
 
 .input {
@@ -46,46 +46,58 @@ select {
 	background-repeat: no-repeat;
 	font-family: 'IBM Plex Mono', monospace;
 	font-size: 1vw;
-	padding: 0.75vw 0.75vw;
-	width: 5vw;
-	border: none;
-	margin: 1vw;
+	width: 100px;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
 }
 
-select:focus {
+select:focus, button:focus {
 	outline: none;
 }
 
 button {
-	padding: 0.75vw;
 	font-family: 'IBM Plex Mono', monospace;
-	width: 5vw;
-	border-radius: 0.5vw;
-	font-size: 1vw;
 	background-color: green;
 	color: white;
 	border: none;
-	margin: 1vw;
+	width: 100px;
+	border-radius: 5px;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
 }
 
 table {
-  border-collapse: collapse;
+  /*border-collapse: collapse;*/
   border-spacing: 0;
+}
+
+.bracket {
+	position: absolute;
+	top: 25%;
+	right: 5px;
+	height: 50%;
+	width: 10px;
+	border-right: 2px solid grey;
+	border-top: 2px solid grey;
+	border-bottom: 2px solid grey;
 }
 
 .outerTable {
 	display: inline-block;
 }
 
-h2 {
+.nodetext {
 	margin: 0;
-	font-size: 1vw;
 }
 
 .node {
-	padding: 0.5vw;
-	width: 7vw;
+	padding: 5px;
+	width: 150px;
 	display: inline-block;
+	float: right;
 	border-radius: 5px;
 	background-color: blue;
 	white-space: nowrap;
