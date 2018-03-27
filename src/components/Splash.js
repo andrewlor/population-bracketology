@@ -15,7 +15,7 @@ class Splash extends React.Component {
       	<div className="splash">
       		<div className="center">
       			<h1 style={{textAlign: 'center'}}>population bracketology</h1>
-      			<h3 style={{textAlign: 'center'}}>a bracketology game where you compare population sizes of countries around the world.</h3>
+      			<h3 style={{textAlign: 'center'}}>a bracketology game where you compare population sizes of countries around the world. instructions: select the country with the largest population.</h3>
       			<div className="input">
 	      			<select defaultValue="" id="select">
 	      				<option value="" disabled>size</option>
