@@ -21,13 +21,15 @@ class Bracketology extends NodePair {
 		}
 		this.setState({showScore: true})
 	}
-
+  
 	renderScore() {
+		let currScore = score.score
+		if (this.state.correctLeft || this.state.correctRight) ++currScore
 		if (this.state.showScore) {
 			return <tr colSpan="2">
 				<td colSpan="2">
-					<h1 style={{color: 'black', float: 'left'}}>Your score is {score.score + 1}</h1>
-					<button style={{float: 'right'}} onClick={this.props.playAgain}>Play Again</button>
+				  <h1 style={{color: 'black', float: 'left'}}>Your score is {currScore}</h1>
+				  <button style={{float: 'right'}} onClick={this.props.playAgain}>Play Again</button>
 				</td>
 			</tr>
 		}
@@ -41,7 +43,7 @@ class Bracketology extends NodePair {
       		<tr>
 	      		<td>
 			        <Node
-			        	data={this.props.data.left}
+			          data={this.props.data.left}
 			        	root={true}
 			        	correct={this.state.correctLeft}
 			        	incorrect={this.state.incorrectLeft}
