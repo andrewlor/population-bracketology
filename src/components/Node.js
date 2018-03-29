@@ -1,5 +1,6 @@
 import React from "react"
 import NodePair from "./NodePair.js"
+import Textfit from 'react-textfit'
 class Node extends React.Component {
 	constructor(props) {
 		super(props)
@@ -29,6 +30,7 @@ class Node extends React.Component {
 		if (this.state.correct) output['backgroundColor'] = 'green'
 		if (this.state.incorrect) output['backgroundColor'] = 'red'
 		if (this.state.disabled) output['backgroundColor'] = 'grey'
+		if (this.state.text) output['height'] = '50px'
 		return output
 	}
 
@@ -49,9 +51,11 @@ class Node extends React.Component {
   	let elements = [
   		<td>{this.renderNodePair()}</td>,
       <td>
-      	<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}}>
-      		<h2 className="nodetext">{this.state.text}</h2>
-      	</div>
+				<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}}>
+					<h1 className="nodetext">
+						<Textfit mode="single" max={30}>{this.state.text}</Textfit>
+					</h1>
+				</div>
       </td>
   	]
   	if (this.props.reverse) elements.reverse()

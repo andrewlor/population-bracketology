@@ -91,6 +91,7 @@ table {
 
 .nodetext {
 	margin: 0;
+	vertical-align: middle;
 }
 
 .node {
@@ -102,4 +103,6 @@ table {
 	background-color: blue;
 	white-space: nowrap;
 	overflow: hidden;
+	text-align: center;
+	line-height: 50px;
 }
