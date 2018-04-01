@@ -42,7 +42,7 @@ class Node extends React.Component {
 	}
 
 	onClick() {
-		if (!this.state.selected && !this.state.disabled) {
+		if (!(this.state.correct || this.state.incorrect) && !this.state.disabled) {
       this.props.select(this.state.text, this.props.id)
     }
 	}
