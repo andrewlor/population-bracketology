@@ -217,12 +217,20 @@ function dataProcessor(size) {
 	for (let i = 0; i < size; ++i) arr.push(randomProperty(pool))
 	let arr1 = []
 	for (let i = 0; i < size; i += 2) {
-		let obj = {left: arr[i].key, right: arr[i+1].key}
-		if (Number(arr[i].value) < Number(arr[i+1].value)) {
-			obj.correct = arr[i+1].key
-		} else {
-			obj.correct = arr[i].key
+		let obj = {
+			left: {
+				correct: arr[i].key,
+				population: Number(arr[i].value)
+			},
+			right: {
+				correct: arr[i+1].key,
+				population: Number(arr[i+1].value)
+			}
 		}
+		let idx = i
+		if (Number(arr[i].value) < Number(arr[i+1].value)) ++idx
+		obj.correct = arr[idx].key
+		obj.population = Number(arr[idx].value)
 		arr1.push(obj)
 	}
 
@@ -230,15 +238,15 @@ function dataProcessor(size) {
 		let tempArr = []
 		for (let i = 0; i < arr1.length; i += 2) {
 			let obj = {left: arr1[i], right: arr1[i+1]}
-			if (Number(data[arr1[i].correct]) < Number(data[arr1[i+1].correct])) {
-				obj.correct = arr1[i+1].correct
-			} else {
-				obj.correct = arr1[i].correct
-			}
+			let idx = i
+			if (Number(data[arr1[i].correct]) < Number(data[arr1[i+1].correct])) ++idx
+			obj.correct = arr1[idx].correct
+			obj.population = arr1[idx].population
 			tempArr.push(obj)
 		}
 		arr1 = tempArr
 	}
+	console.log(arr1)
 	return arr1[0]
 }
 

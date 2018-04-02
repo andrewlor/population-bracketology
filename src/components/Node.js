@@ -1,19 +1,24 @@
 import React from "react"
 import NodePair from "./NodePair.js"
 import Textfit from 'react-textfit'
+import Population from "./Population.js";
 class Node extends React.Component {
 	constructor(props) {
 		super(props)
 		let text
-		if (typeof props.data === "string") {
-			text = props.data
+		let pop
+		if (!Object.keys(this.props.data).includes('left')) {
+			text = props.data.correct
+			pop = props.data.population
 			this.props.enable(this.props.id)
 		}
 		this.state = {
 			correct: false,
 			incorrect: false,
 			disabled: props.disabled,
-			text: text
+			text: text,
+			population: pop,
+			showPopulation: false
 		}
 	}
 
@@ -34,11 +39,13 @@ class Node extends React.Component {
 		return output
 	}
 
-	renderNodePair() { if (typeof this.props.data !== 'string') return <NodePair data={this.props.data} select={(text) => {this.select(text)}} reverse={this.props.reverse}></NodePair> }
+	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse}></NodePair> }
 
-	select(text) {
+	renderPopulation() { if (this.state.showPopulation) return <Population population={this.state.population}></Population> }
+
+	select(data) {
 		this.props.enable(this.props.id)
-		this.setState({text: text})
+		this.setState({text: data.correct, population: data.population})
 	}
 
 	onClick() {
@@ -47,15 +54,20 @@ class Node extends React.Component {
     }
 	}
 
+	onHover() {
+		if (this.state.incorrect) this.setState({showPopulation: true})
+	}
+
   render () {
   	let elements = [
   		<td>{this.renderNodePair()}</td>,
       <td>
-				<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}}>
+				<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}} onMouseEnter={() => {this.onHover()}} onMouseLeave={() => {this.setState({showPopulation: false})}}>
 					<h1 className="nodetext">
 						<Textfit mode="single" max={30}>{this.state.text}</Textfit>
 					</h1>
 				</div>
+				{this.renderPopulation()}
       </td>
   	]
   	if (this.props.reverse) elements.reverse()

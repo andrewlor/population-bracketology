@@ -87,7 +87,7 @@ class NodePair extends React.Component {
 				this.setState({incorrectRight: true})
 			}
 		}
-		this.props.select(this.props.data.correct)
+		this.props.select(this.props.data)
 	}
 
   render () {
