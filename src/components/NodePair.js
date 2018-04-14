@@ -12,7 +12,9 @@ class NodePair extends React.Component {
 			incorrectLeft: false,
 			incorrectRight: false,
 			existsLeft: false,
-			existsRight: false
+			existsRight: false,
+			showPopulationLeft: false,
+			showPopulationRight: false
 		}
 	}
 
@@ -23,6 +25,7 @@ class NodePair extends React.Component {
 			correct={this.state.correctLeft}
 			incorrect={this.state.incorrectLeft}
 			disabled={this.state.disableLeft}
+			showPopulation={this.state.showPopulationLeft}
 			id={0}
 			reverse={this.props.reverse}
 			gameOver={this.props.gameOver}
@@ -34,6 +37,7 @@ class NodePair extends React.Component {
 			correct={this.state.correctRight}
 			incorrect={this.state.incorrectRight}
 			disabled={this.state.disableRight}
+			showPopulation={this.state.showPopulationRight}
 			id={1}
 			reverse={this.props.reverse}
 			gameOver={this.props.gameOver}
@@ -76,17 +80,17 @@ class NodePair extends React.Component {
 			this.setState({disableRight: true})
 			if (this.props.data.correct === text) {
 				++score.score
-				this.setState({correctLeft: true})
+				this.setState({correctLeft: true, showPopulationRight: true})
 			} else {
-				this.setState({incorrectLeft: true})
+				this.setState({incorrectLeft: true, showPopulationLeft: true})
 			}
 		} else {
 			this.setState({disableLeft: true})
 			if (this.props.data.correct === text) {
 				++score.score
-				this.setState({correctRight: true})
+				this.setState({correctRight: true, showPopulationLeft: true})
 			} else {
-				this.setState({incorrectRight: true})
+				this.setState({incorrectRight: true, showPopulationRight: true})
 			}
 		}
 		this.props.select(this.props.data)

@@ -41,7 +41,19 @@ class Node extends React.Component {
 
 	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair> }
 
-	renderPopulation() { if (this.state.showPopulation) return <Population population={this.state.population}></Population> }
+	renderNode() {
+		if (this.state.showPopulation) {
+			return <Population population={this.state.population} onMouseLeave={() => {this.setState({showPopulation: false})}}></Population> 
+		} else {
+			return (
+			<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}} onMouseEnter={() => {this.onHover()}} onMouseLeave={() => {this.setState({showPopulation: false})}}>
+				<h1 className="nodetext">
+					<Textfit mode="single" max={30}>{this.state.text}</Textfit>
+				</h1>
+			</div>
+			)
+		}
+	}
 
 	select(data) {
 		this.props.enable(this.props.id)
@@ -50,25 +62,18 @@ class Node extends React.Component {
 
 	onClick() {
 		if (!(this.state.correct || this.state.incorrect) && !this.state.disabled) {
-      this.props.select(this.state.text, this.props.id)
-    }
+      		this.props.select(this.state.text, this.props.id)
+    	}
 	}
 
 	onHover() {
-		if (this.state.incorrect || this.props.gameOver) this.setState({showPopulation: true})
+		if (this.props.showPopulation || this.props.gameOver) this.setState({showPopulation: true})
 	}
 
   render () {
   	let elements = [
   		<td>{this.renderNodePair()}</td>,
-      <td>
-				<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}} onMouseEnter={() => {this.onHover()}} onMouseLeave={() => {this.setState({showPopulation: false})}}>
-					<h1 className="nodetext">
-						<Textfit mode="single" max={30}>{this.state.text}</Textfit>
-					</h1>
-					{this.renderPopulation()}
-				</div>
-      </td>
+      	<td>{this.renderNode()}</td>
   	]
   	if (this.props.reverse) elements.reverse()
   	let className = this.props.root ? "outerTable" : ""
