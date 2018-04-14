@@ -19,7 +19,7 @@ class Bracketology extends NodePair {
 				this.setState({incorrectRight: true})
 			}
 		}
-		this.setState({showScore: true})
+		this.setState({showScore: true, gameOver: true})
 	}
   
 	renderScore() {
@@ -48,7 +48,8 @@ class Bracketology extends NodePair {
 			        	correct={this.state.correctLeft}
 			        	incorrect={this.state.incorrectLeft}
 			        	disabled={this.state.disableLeft}
-			        	id={0}
+								id={0}
+								gameOver={this.state.gameOver}
 			        	select={(text, id) => {this.select(text, id)}}
 			        	enable={(id) => {this.enableNode(id)}}
 			        ></Node>
@@ -62,6 +63,7 @@ class Bracketology extends NodePair {
 								incorrect={this.state.incorrectRight}
 								disabled={this.state.disableRight}
 								id={1}
+								gameOver={this.state.gameOver}
 								select={(text, id) => {this.select(text, id)}}
 								enable={(id) => {this.enableNode(id)}}
 							></Node>

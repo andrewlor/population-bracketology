@@ -25,6 +25,7 @@ class NodePair extends React.Component {
 			disabled={this.state.disableLeft}
 			id={0}
 			reverse={this.props.reverse}
+			gameOver={this.props.gameOver}
 			select={(text, id) => {this.select(text, id)}}
 			enable={(id) => {this.enableNode(id)}}
 		></Node>
@@ -35,6 +36,7 @@ class NodePair extends React.Component {
 			disabled={this.state.disableRight}
 			id={1}
 			reverse={this.props.reverse}
+			gameOver={this.props.gameOver}
 			select={(text, id) => {this.select(text, id)}}
 			enable={(id) => {this.enableNode(id)}}
 		></Node>

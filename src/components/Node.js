@@ -39,7 +39,7 @@ class Node extends React.Component {
 		return output
 	}
 
-	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse}></NodePair> }
+	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair> }
 
 	renderPopulation() { if (this.state.showPopulation) return <Population population={this.state.population}></Population> }
 
@@ -55,7 +55,7 @@ class Node extends React.Component {
 	}
 
 	onHover() {
-		if (this.state.incorrect) this.setState({showPopulation: true})
+		if (this.state.incorrect || this.props.gameOver) this.setState({showPopulation: true})
 	}
 
   render () {
@@ -66,8 +66,8 @@ class Node extends React.Component {
 					<h1 className="nodetext">
 						<Textfit mode="single" max={30}>{this.state.text}</Textfit>
 					</h1>
+					{this.renderPopulation()}
 				</div>
-				{this.renderPopulation()}
       </td>
   	]
   	if (this.props.reverse) elements.reverse()
