@@ -1,5 +1,4 @@
 import React from "react"
-import Node from "./Node"
 class Splash extends React.Component {
 
 	start() {

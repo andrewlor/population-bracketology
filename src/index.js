@@ -9,6 +9,7 @@ import score from './components/Score';
 
 let unmountSplash = (size) => {
 	getData('country_pop', size).then((data) => {
+		console.log(data)
 		ReactDOM.unmountComponentAtNode(document.getElementById('root'))
 		ReactDOM.render(<Bracketology data={data} playAgain={playAgain}/>, document.getElementById('root'))
 	}).catch((err => {

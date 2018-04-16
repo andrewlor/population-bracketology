@@ -72,8 +72,8 @@ class Node extends React.Component {
 
   render () {
   	let elements = [
-  		<td>{this.renderNodePair()}</td>,
-      	<td>{this.renderNode()}</td>
+  		<td key={0}>{this.renderNodePair()}</td>,
+      <td key={1}>{this.renderNode()}</td>
   	]
   	if (this.props.reverse) elements.reverse()
   	let className = this.props.root ? "outerTable" : ""
