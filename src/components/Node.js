@@ -1,19 +1,24 @@
 import React from "react"
 import NodePair from "./NodePair.js"
 import Textfit from 'react-textfit'
+import Population from "./Population.js";
 class Node extends React.Component {
 	constructor(props) {
 		super(props)
 		let text
-		if (typeof props.data === "string") {
-			text = props.data
+		let pop
+		if (!Object.keys(this.props.data).includes('left')) {
+			text = props.data.correct
+			pop = props.data.population
 			this.props.enable(this.props.id)
 		}
 		this.state = {
 			correct: false,
 			incorrect: false,
 			disabled: props.disabled,
-			text: text
+			text: text,
+			population: pop,
+			showPopulation: false
 		}
 	}
 
@@ -34,29 +39,41 @@ class Node extends React.Component {
 		return output
 	}
 
-	renderNodePair() { if (typeof this.props.data !== 'string') return <NodePair data={this.props.data} select={(text) => {this.select(text)}} reverse={this.props.reverse}></NodePair> }
+	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair> }
 
-	select(text) {
+	renderNode() {
+		if (this.state.showPopulation) {
+			return <Population population={this.state.population} onMouseLeave={() => {this.setState({showPopulation: false})}}></Population> 
+		} else {
+			return (
+			<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}} onMouseEnter={() => {this.onHover()}} onMouseLeave={() => {this.setState({showPopulation: false})}}>
+				<h1 className="nodetext">
+					<Textfit mode="single" max={30}>{this.state.text}</Textfit>
+				</h1>
+			</div>
+			)
+		}
+	}
+
+	select(data) {
 		this.props.enable(this.props.id)
-		this.setState({text: text})
+		this.setState({text: data.correct, population: data.population})
 	}
 
 	onClick() {
 		if (!(this.state.correct || this.state.incorrect) && !this.state.disabled) {
-      this.props.select(this.state.text, this.props.id)
-    }
+      		this.props.select(this.state.text, this.props.id)
+    	}
+	}
+
+	onHover() {
+		if (this.props.showPopulation || this.props.gameOver) this.setState({showPopulation: true})
 	}
 
   render () {
   	let elements = [
   		<td>{this.renderNodePair()}</td>,
-      <td>
-				<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}}>
-					<h1 className="nodetext">
-						<Textfit mode="single" max={30}>{this.state.text}</Textfit>
-					</h1>
-				</div>
-      </td>
+      	<td>{this.renderNode()}</td>
   	]
   	if (this.props.reverse) elements.reverse()
   	let className = this.props.root ? "outerTable" : ""

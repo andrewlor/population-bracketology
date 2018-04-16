@@ -106,3 +106,20 @@ table {
 	text-align: center;
 	line-height: 50px;
 }
+
+.population {
+	padding: 5px;
+	width: 150px;
+	display: inline-block;
+	float: right;
+	border-radius: 5px;
+	background-color: black;
+	white-space: nowrap;
+	overflow: hidden;
+	text-align: center;
+	line-height: 50px;
+}
+
+.population h1 {
+	margin: 0;
+}
