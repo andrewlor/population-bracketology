@@ -39,7 +39,11 @@ class Node extends React.Component {
 		return output
 	}
 
-	renderNodePair() { if (Object.keys(this.props.data).includes('left')) return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair> }
+	renderNodePair() {
+		if (Object.keys(this.props.data).includes('left')) {
+			return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair>
+		}
+	}
 
 	renderNode() {
 		if (this.state.showPopulation) {
