@@ -22,6 +22,7 @@ class NodePair extends React.Component {
 		let n1, n2;
 		n1 = <Node
 			data={this.props.data.left}
+			metric={this.props.metric}
 			correct={this.state.correctLeft}
 			incorrect={this.state.incorrectLeft}
 			disabled={this.state.disableLeft}
@@ -34,6 +35,7 @@ class NodePair extends React.Component {
 		></Node>
 		n2 = <Node
 			data={this.props.data.right}
+			metric={this.props.metric}
 			correct={this.state.correctRight}
 			incorrect={this.state.incorrectRight}
 			disabled={this.state.disableRight}

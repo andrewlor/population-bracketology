@@ -41,13 +41,13 @@ class Node extends React.Component {
 
 	renderNodePair() {
 		if (Object.keys(this.props.data).includes('left')) {
-			return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver}></NodePair>
+			return <NodePair data={this.props.data} select={(data) => {this.select(data)}} reverse={this.props.reverse} gameOver={this.props.gameOver} metric={this.props.metric}></NodePair>
 		}
 	}
 
 	renderNode() {
 		if (this.state.showPopulation) {
-			return <Population population={this.state.population} onMouseLeave={() => {this.setState({showPopulation: false})}}></Population> 
+			return <Population population={this.state.population} metric={this.props.metric} onMouseLeave={() => {this.setState({showPopulation: false})}}></Population> 
 		} else {
 			return (
 			<div className='node' style={this.renderStyle()} onClick={() => {this.onClick()}} onMouseEnter={() => {this.onHover()}} onMouseLeave={() => {this.setState({showPopulation: false})}}>

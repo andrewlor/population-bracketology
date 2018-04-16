@@ -6,7 +6,7 @@ class Population extends React.Component {
             <div className='population' onMouseLeave={this.props.onMouseLeave}>
                 <h1 className="nodetext">
 					<Textfit mode="single" max={30}>
-                        {this.props.population} million
+                        {this.props.population} {this.props.metric}
                     </Textfit>
 				</h1>
             </div>
