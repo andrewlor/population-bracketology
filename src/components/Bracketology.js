@@ -43,12 +43,13 @@ class Bracketology extends NodePair {
       		<tr>
 	      		<td>
 			        <Node
-			          data={this.props.data.left}
+								data={this.props.data.left}
+								metric={this.props.data.metric}
 			        	root={true}
 			        	correct={this.state.correctLeft}
 			        	incorrect={this.state.incorrectLeft}
 			        	disabled={this.state.disableLeft}
-			        	id={0}
+								id={0}
 			        	select={(text, id) => {this.select(text, id)}}
 			        	enable={(id) => {this.enableNode(id)}}
 			        ></Node>
@@ -56,6 +57,7 @@ class Bracketology extends NodePair {
 			      <td>
 							<Node
 								data={this.props.data.right}
+								metric={this.props.data.metric}
 								root={true}
 								reverse={true}
 								correct={this.state.correctRight}
