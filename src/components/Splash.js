@@ -2,9 +2,10 @@ import React from "react"
 class Splash extends React.Component {
 
 	start() {
-  	let size = Number(document.getElementById("select").value)
+		let size = Number(document.getElementById("select_size").value)
+		let metric = document.getElementById("select_metric").value
   	if (size > 0) {
-  		this.props.unmountSplash(size)
+  		this.props.unmountSplash(size, metric)
   	}
   }
   
@@ -16,7 +17,11 @@ class Splash extends React.Component {
       			<h1 style={{textAlign: 'center'}}>population bracketology</h1>
       			<h3 style={{textAlign: 'center'}}>a bracketology game where you compare population sizes of countries around the world. instructions: select the country with the largest population.</h3>
       			<div className="input">
-	      			<select defaultValue="" id="select">
+							<select defaultValue="" id="select_metric" style={{width: '150px'}}>
+								<option value="pop">Population</option> 
+	  						<option value="area">Area</option> 
+							</select>
+	      			<select defaultValue="" id="select_size">
 	      				<option value="" disabled>size</option>
 	  						<option value="2">2</option> 
 	  						<option value="4">4</option>

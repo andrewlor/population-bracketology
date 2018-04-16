@@ -7,8 +7,8 @@ import registerServiceWorker from './registerServiceWorker';
 import getData from './dataProcessor';
 import score from './components/Score';
 
-let unmountSplash = (size) => {
-	getData('country_area', size).then((data) => {
+let unmountSplash = (size, metric) => {
+	getData('country_' + metric, size).then((data) => {
 		console.log(data)
 		ReactDOM.unmountComponentAtNode(document.getElementById('root'))
 		ReactDOM.render(<Bracketology data={data} playAgain={playAgain}/>, document.getElementById('root'))
