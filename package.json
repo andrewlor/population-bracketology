@@ -1,20 +1,37 @@
 {
-  "name": "population_bracketology",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1",
-    "react-textfit": "^1.1.0",
-    "request": "^2.85.0",
-    "request-promise": "^4.2.2"
-  },
+  "name": "population-bracketology",
+  "version": "1.0.0",
+  "description": "A bracketology game where you compare population sizes of countries around the world. Instructions: select the country with the largest population in each pair.",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "process-data": "data/dataProcessor.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewlor/Population-Bracketology.git"
+  },
+  "author": "Andrew Lor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewlor/Population-Bracketology/issues"
+  },
+  "homepage": "https://github.com/andrewlor/Population-Bracketology#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "dependencies": {
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1",
+    "react-textfit": "^1.1.0"
   }
 }
